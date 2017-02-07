@@ -5,6 +5,7 @@ class Frame(object):
         self.name = name
         self.app = None
         self.window = None
+        self.active = True
         self.actors = dict()
         self.frameVariables = dict()
 
@@ -12,10 +13,10 @@ class Frame(object):
         pass
 
     def setActive(self, active=True):
-        if active:
-            self.window.push_handlers(self, 'frame')
-        else:
-            self.window.pop_handlers()
+        if active and not self.active:
+            self.active = True
+        elif not active and self.active:
+            self.active = False
 
     def addActor(self, actor):
         self.actors[actor.name] = actor
@@ -41,6 +42,7 @@ class Frame(object):
     # Pyglet window events
     def on_activate(self):
         for actor in self.actors:
+            self.actors[actor].load()
             self.window.push_handlers(self.actors[actor])
         print("current frame switched to " + self.app.currentFrame.name)
     #

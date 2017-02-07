@@ -26,8 +26,8 @@ class App(object):
             return
         # pop all handlers
         try:
-            self.window.pop_handlers()
-            self.currentFrame.window.pop_handlers()
+            while(True):
+                self.window.pop_handlers()
         except AssertionError:
             pass
         if self.currentFrame != None:
@@ -63,9 +63,6 @@ myApp.setFrame('testFrame')
 
 # create an actor
 at = Actor('finnAndJake')
-at.addAnimatedSprite('walk', "at.gif")
-at.addSprite('idle', 'at-idle.gif')
-at.setCurrentSprite('walk')
 testFrame.addActor(at)
 
 myApp.run()

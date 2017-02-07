@@ -13,10 +13,23 @@ class Actor(object):
         self.dx = 0
         self.dy = 0
 
+    # user defined
+    def load(self):
+        self.addAnimatedSprite('walk', "at.gif")
+        self.addSprite('idle', 'at-idle.gif')
+        self.setCurrentSprite('walk')
+
+    # provided functions
     def delete(self):
         # delete all stored sprites
         for sprite in self.sprites:
             self.sprites[sprite].delete()
+
+    def setActive(self, active=True):
+        if active and not self.active:
+            self.active = True
+        elif not active and self.active:
+            self.active = False
 
     def addSprite(self, name, imagePath):
         image = pyglet.image.load(imagePath)
