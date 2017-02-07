@@ -17,6 +17,8 @@ class Actor(object):
     def load(self):
         self.addAnimatedSprite('walk', "at.gif")
         self.addSprite('idle', 'at-idle.gif')
+        self.setAnchorPosition(0, 0)
+        self.setPosition(self.x, self.y)
         self.setCurrentSprite('walk')
 
     # provided functions
@@ -66,6 +68,29 @@ class Actor(object):
         return None
 
     # transformations and translations
+    def getMaxWidth(self):
+        max = 0
+        for sprite in self.sprites:
+            image = self.sprites[sprite].image
+            if isinstance(image, pyglet.image.AbstractImage):
+                if image.width > max:
+                    max = image.width
+            elif isinstance(image, pyglet.image.Animation):
+                if image.get_max_width() > max:
+                    max = image.get_max_width()
+        return max
+
+    def getMaxHeight(self):
+        max = 0
+        for sprite in self.sprites:
+            image = self.sprites[sprite].image
+            if isinstance(image, pyglet.image.AbstractImage):
+                if image.height > max:
+                    max = image.height
+            elif isinstance(image, pyglet.image.Animation):
+                if image.get_max_height() > max:
+                    max = image.get_max_height()
+        return max
 
     def move(self, dx, dy):
         for sprite in self.sprites:
@@ -88,6 +113,8 @@ class Actor(object):
                     frameImage = frame.image
                     frameImage.anchor_x = frameImage.width // 2
                     frameImage.anchor_y = frameImage.height // 2
+            # adjust position
+        self.move()
 
 
     def scale(self, factor):
