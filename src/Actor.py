@@ -7,6 +7,7 @@ class Actor(object):
         self.frame = None
         self.sprites = dict()
         self.currentSprite = None
+        self.currentSpriteName = None
         self.actorVariables = dict()
         self.x0 = x
         self.y0 = y
@@ -52,6 +53,10 @@ class Actor(object):
     def setCurrentSprite(self, name):
         if name in self.sprites:
             self.currentSprite = self.sprites[name]
+            self.currentSpriteName = name
+
+    def getCurrentSpriteName(self):
+        return self.currentSpriteName
 
     def removeSprite(self, name):
         if name in self.sprites:

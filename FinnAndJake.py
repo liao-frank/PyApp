@@ -24,7 +24,7 @@ class FinnAndJake(Actor):
             self.move(0, -10)
 
     def on_mouse_press(self, x, y, button, modifiers):
-        for sprite in self.sprites:
-            if self.sprites[sprite] != self.currentSprite:
-                self.currentSprite = self.sprites[sprite]
-                break
+        if self.getCurrentSpriteName == 'idle':
+            self.setCurrentSprite('walk')
+        elif self.getCurrentSpriteName == 'walk':
+            self.setCurrentSprite('idle')
