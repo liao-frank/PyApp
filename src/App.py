@@ -1,6 +1,4 @@
 import pyglet
-from Frame import Frame
-from Actor import Actor
 
 class App(object):
     def __init__(self, name):
@@ -50,19 +48,3 @@ class App(object):
 
     def run(self):
         pyglet.app.run()
-
-myApp = App("myApp")
-
-# create and add frames
-testFrame = Frame("testFrame")
-otherTestFrame = Frame("otherTestFrame")
-
-myApp.addFrame(testFrame)
-myApp.addFrame(otherTestFrame)
-myApp.setFrame('testFrame')
-
-# create an actor
-at = Actor('finnAndJake')
-testFrame.addActor(at)
-
-myApp.run()

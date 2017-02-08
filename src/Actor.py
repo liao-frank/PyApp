@@ -8,6 +8,8 @@ class Actor(object):
         self.sprites = dict()
         self.currentSprite = None
         self.actorVariables = dict()
+        self.x0 = x
+        self.y0 = y
         self.x = x
         self.y = y
         self.dx = 0
@@ -15,11 +17,7 @@ class Actor(object):
 
     # user defined
     def load(self):
-        self.addAnimatedSprite('walk', "at.gif")
-        self.addSprite('idle', 'at-idle.gif')
-        self.setAnchorPosition(0, 0)
-        self.setPosition(self.x, self.y)
-        self.setCurrentSprite('walk')
+        pass
 
     # provided functions
     def delete(self):
@@ -102,7 +100,7 @@ class Actor(object):
         for sprite in self.sprites:
             self.sprites[sprite].position = (x, y)
 
-    def setAnchorPosition(self, x, y):
+    def centerAnchorPosition(self):
         for sprite in self.sprites:
             image = self.sprites[sprite].image
             if isinstance(image, pyglet.image.AbstractImage):
@@ -113,8 +111,8 @@ class Actor(object):
                     frameImage = frame.image
                     frameImage.anchor_x = frameImage.width // 2
                     frameImage.anchor_y = frameImage.height // 2
-            # adjust position
-        self.move()
+        # adjust position
+        self.move(self.getMaxWidth() // 2, self.getMaxHeight() // 2)
 
 
     def scale(self, factor):
@@ -161,19 +159,8 @@ class Actor(object):
     # def on_hide(self):
     #     pass
     #
-    def on_key_press(self, symbol, modifiers):
-        if str(symbol) == '61':
-            self.scale(2)
-        elif str(symbol) == '45':
-            self.scale(0.5)
-        elif str(symbol) == '48':
-            self.rotate(5)
-        elif str(symbol) == '57':
-            self.rotate(-5)
-        elif str(symbol) == '65362':
-            self.move(0, 10)
-        elif str(symbol) == '65364':
-            self.move(0, -10)
+    # def on_key_press(self, symbol, modifiers):
+    #     pass
     #
     # def on_key_release(self, symbol, modifiers):
     #     pass
@@ -217,8 +204,5 @@ class Actor(object):
     # def on_text_motion_select(self, motion):
     #     pass
     #
-    def on_mouse_press(self, x, y, button, modifiers):
-        for sprite in self.sprites:
-            if self.sprites[sprite] != self.currentSprite:
-                self.currentSprite = self.sprites[sprite]
-                break
+    # def on_mouse_press(self, x, y, button, modifiers):
+    #     pass
