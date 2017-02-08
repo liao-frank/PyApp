@@ -13,7 +13,7 @@ myApp.addFrame(otherTestFrame)
 myApp.setFrame('testFrame')
 
 # create an actor
-at = FinnAndJake('finnAndJake')
-testFrame.addActor(at)
+myActor = FinnAndJake('finnAndJake')
+testFrame.addActor(myActor)
 
 myApp.run()

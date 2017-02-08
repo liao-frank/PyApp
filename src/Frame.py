@@ -55,7 +55,7 @@ class Frame(object):
     def on_draw(self):
         self.window.clear()
         for actor in self.actors:
-            self.actors[actor].draw()
+            self.actors[actor].on_draw()
 
     # Pyglet window events
     # def on_close(self):

@@ -131,12 +131,12 @@ class Actor(object):
         for sprite in self.sprites:
             self.sprites[sprite].rotation = theta
 
-    def draw(self):
+    # no touch functions
+
+    def on_draw(self):
         self.currentSprite.draw()
 
     # Pyglet window events
-    # def on_activate(self):
-    #     pass
     #
     # def on_close(self):
     #     pass
@@ -145,12 +145,6 @@ class Actor(object):
     #     pass
     #
     # def on_context_state_lost(self):
-    #     pass
-    #
-    # def on_deactivate(self):
-    #     pass
-    #
-    # def on_draw(self):
     #     pass
     #
     # def on_expose(self):
