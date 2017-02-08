@@ -7,12 +7,14 @@ class Frame(object):
         self.actors = dict()
         self.frameVariables = dict()
 
+    # user defined
     def load(self):
         pass
 
     def unload(self):
         pass
 
+    # provided functions
     def setActive(self, active=True):
         if active and not self.active:
             self.active = True
@@ -40,7 +42,7 @@ class Frame(object):
         if name in self.frameVariables:
             del self.frameVariables[name]
 
-    # Pyglet window events
+    # no touch functions
     def on_activate(self):
         for actor in self.actors:
             self.actors[actor].load()
@@ -55,6 +57,7 @@ class Frame(object):
         for actor in self.actors:
             self.actors[actor].draw()
 
+    # Pyglet window events
     # def on_close(self):
     #     pass
     #
